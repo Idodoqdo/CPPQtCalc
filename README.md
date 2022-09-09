@@ -1,0 +1,2 @@
+# CPPQtCalc
+Implemented an extended version of a conventional calculator in the C++ programming language in the object-oriented programming paradigm. In addition to basic arithmetic operations, like plus-minus and multiply-divide, I added the calculator with the ability to calculate arithmetic expressions taking into account priorities, as well as some mathematical functions (sine, cosine, logarithm, etc.). In addition to evaluating expressions, the calculator supports using the variable x and plotting the corresponding function.
