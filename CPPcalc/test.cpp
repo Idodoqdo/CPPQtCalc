@@ -16,15 +16,16 @@ TEST(RPN_OUTPUT_1, ORIGIN_1) {
   double equal;
   Model model;
   res = model.Test("(4+5)*9-(3/2+1)");
-  EXPECT_EQ(res.second, 78.5);
+  equal = (4 + 5) * 9 - ((3.0 / 2.0) + 1);
+  EXPECT_FLOAT_EQ(res.second, equal);
 }
 
 TEST(RPN_OUTPUT_2, ORIGIN_2) {
   std::pair<bool, double> res;
-  double equal;
+  double equal = 3 - 7 + 3;
   Model model;
   res = model.Test("3-7+3");
-  EXPECT_EQ(res.second, -1);
+  EXPECT_EQ(res.second, equal);
 }
 
 TEST(RPN_OUTPUT_3, ORIGIN_3) {
@@ -165,7 +166,16 @@ TEST(RPN_OUTPUT_18, ORIGIN_18) {
   EXPECT_EQ(res.first, equal);
 }
 
-int main(int argc, char* argv[]) {
+TEST(RPN_OUTPUT_19, ORIGIN_19) {
+  std::pair<bool, double> res;
+  double equal;
+  Model model;
+  res = model.Test("t(3)+w(0.5)-d(4)+l(20)*e(5)");
+  equal = tan(3) + asin(0.5) - log(4) + log10(20) * atan(5);
+  EXPECT_FLOAT_EQ(res.second, equal);
+}
+
+int main(int argc, char *argv[]) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }

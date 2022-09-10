@@ -9,11 +9,10 @@ void Controller::AppendToLine(std::string added_string) {
 void Controller::AC() { model->AC(); }
 
 void Controller::CalculateGraph(std::vector<double> &x, std::vector<double> &y,
-                                double &xBegin, double &xEnd, double &yBegin,
-                                double &yEnd, double &step) {
+                                double const &xBegin, double const &xEnd,
+                                double const &yBegin, double const &yEnd,
+                                double const &step) {
   model->CalculateGraph(x, y, xBegin, xEnd, yBegin, yEnd, step);
 }
 
-bool Controller::Valid() {
-    return model->Valid();
-}
+bool Controller::Valid() { return model->Valid(); }

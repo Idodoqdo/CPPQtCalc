@@ -17,16 +17,16 @@ class View : public QMainWindow {
   Controller *controller;
   Q_OBJECT
 
- public:
-  View(Controller *_controller);
+public:
+  explicit View(Controller *_controller);
   ~View();
 
- private:
+private:
   Ui::View *ui;
- private slots:
+private slots:
   void AppendToLine();
   void AC();
   void on_PushButtonEquals_clicked();
   void on_PushButtonBuildGraph_clicked();
 };
-#endif  // VIEW_H
+#endif // VIEW_H

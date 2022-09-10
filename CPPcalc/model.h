@@ -22,8 +22,8 @@ class Model {
   void GoToRPN();
   void CalculateRPN(double x);
   bool IsOperator(char oper);
-  double Operation(long double &a, long double &b, char oper);
-  double Operation(long double &a, char oper);
+  double Operation(long const double &a, long const double &b, char const oper);
+  double Operation(long const double &a, char const oper);
   double ScanNum(std::list<char>::iterator &it);
   void SeparateNum(std::string::const_iterator &it);
   bool ValidFirstAndLastSim();
@@ -34,16 +34,17 @@ class Model {
   double calculated_value;
   bool may_unary;
 
- public:
+public:
   Model() : expression(""), calculated_value(4), may_unary(true){};
   double Calculate(double x);
   void CalculateGraph(std::vector<double> &x, std::vector<double> &y,
-                      double &xBegin, double &xEnd, double &yBegin,
-                      double &yEnd, double &step);
+                      double const &xBegin, double const &xEnd,
+                      double const &yBegin, double const &yEnd,
+                      double const &step);
   void AppendToLine(std::string added_string);
-  std::pair<bool, double> Test(std::string input, double x = 0);
+  std::pair<bool, double> Test(std::string const &input, double x = 0);
   void AC();
   bool Valid();
 };
 
-#endif  // MODEL_H
+#endif // MODEL_H

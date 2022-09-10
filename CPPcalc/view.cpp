@@ -38,7 +38,7 @@ View::View(Controller *_controller)
   connect(ui->pushButton_right_s, SIGNAL(clicked()), this,
           SLOT(AppendToLine()));
   connect(ui->pushButton_x, SIGNAL(clicked()), this, SLOT(AppendToLine()));
-    connect(ui->pushButton_e, SIGNAL(clicked()), this, SLOT(AppendToLine()));
+  connect(ui->pushButton_e, SIGNAL(clicked()), this, SLOT(AppendToLine()));
   connect(ui->pushButton_AC, SIGNAL(clicked()), this, SLOT(AC()));
 }
 
@@ -89,23 +89,23 @@ void View::on_PushButtonEquals_clicked() {
 void View::on_PushButtonBuildGraph_clicked() {
   bool valid = controller->Valid();
   if (valid) {
-  ui->widget->clearGraphs();
-  double xBegin, xEnd, yBegin, yEnd, step;
-  std::vector<double> x, y;
-  xBegin = ui->doubleSpinBox_min_Df->value();
-  xEnd = ui->doubleSpinBox_max_Df->value();
-  yBegin = ui->doubleSpinBox_min_Ef->value();
-  yEnd = ui->doubleSpinBox_max_Ef->value();
-  step = ui->doubleSpinBox_step->value();
-  controller->CalculateGraph(x, y, xBegin, xEnd, yBegin, yEnd, step);
-  QVector<double> Qx = QVector<double>(x.begin(), x.end());
-  QVector<double> Qy = QVector<double>(y.begin(), y.end());
-  ui->widget->addGraph();
-  ui->widget->graph(0)->addData(Qx, Qy);
-  ui->widget->replot();
-  ui->widget->setInteraction(QCP::iRangeZoom, true);
-  ui->widget->setInteraction(QCP::iRangeDrag, true);
+    ui->widget->clearGraphs();
+    double xBegin, xEnd, yBegin, yEnd, step;
+    std::vector<double> x, y;
+    xBegin = ui->doubleSpinBox_min_Df->value();
+    xEnd = ui->doubleSpinBox_max_Df->value();
+    yBegin = ui->doubleSpinBox_min_Ef->value();
+    yEnd = ui->doubleSpinBox_max_Ef->value();
+    step = ui->doubleSpinBox_step->value();
+    controller->CalculateGraph(x, y, xBegin, xEnd, yBegin, yEnd, step);
+    QVector<double> Qx = QVector<double>(x.begin(), x.end());
+    QVector<double> Qy = QVector<double>(y.begin(), y.end());
+    ui->widget->addGraph();
+    ui->widget->graph(0)->addData(Qx, Qy);
+    ui->widget->replot();
+    ui->widget->setInteraction(QCP::iRangeZoom, true);
+    ui->widget->setInteraction(QCP::iRangeDrag, true);
   } else {
-      ui->label->setText("Error");
+    ui->label->setText("Error");
   }
 }

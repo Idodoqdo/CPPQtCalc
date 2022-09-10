@@ -5,15 +5,16 @@
 class Controller {
   Model *model;
 
- public:
-  Controller(Model *m) : model(m){};
+public:
+  explicit Controller(Model *m) : model(m){};
   double Calculate(double x = 0);
   void AppendToLine(std::string added_string);
   void AC();
   void CalculateGraph(std::vector<double> &x, std::vector<double> &y,
-                      double &xBegin, double &xEnd, double &yBegin,
-                      double &yEnd, double &step);
+                      double const &xBegin, double const &xEnd,
+                      double const &yBegin, double const &yEnd,
+                      double const &step);
   bool Valid();
 };
 
-#endif  // CONTROLLER_H
+#endif // CONTROLLER_H

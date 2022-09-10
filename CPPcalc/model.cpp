@@ -38,8 +38,10 @@ void Model::GoToRPN() {
 void Model::SeparateNum(std::string::const_iterator &it) {
   bool flag_e = false;
   while (isdigit(*it) || *it == '.' || *it == 'e' || (*it == '-' && flag_e)) {
-    if (*it == 'e') flag_e = true;
-    if (*it == '-') flag_e = false;
+    if (*it == 'e')
+      flag_e = true;
+    if (*it == '-')
+      flag_e = false;
     output.push_back(*it);
     ++it;
   }
@@ -54,8 +56,9 @@ double Model::Calculate(double x) {
 }
 
 void Model::CalculateGraph(std::vector<double> &x, std::vector<double> &y,
-                           double &xBegin, double &xEnd, double &yBegin,
-                           double &yEnd, double &step) {
+                           double const &xBegin, double const &xEnd,
+                           double const &yBegin, double const &yEnd,
+                           double const &step) {
   GoToRPN();
   double x_coord = xBegin;
   while (1) {
@@ -65,7 +68,8 @@ void Model::CalculateGraph(std::vector<double> &x, std::vector<double> &y,
       y.push_back(y_coord);
     }
     x_coord += step;
-    if (x_coord >= xEnd) break;
+    if (x_coord >= xEnd)
+      break;
   }
 }
 
@@ -87,7 +91,8 @@ void Model::CalculateRPN(double x) {
       stk.push(ScanNum(it));
     }
   }
-  calculated_value = stk.top();
+  if (!stk.empty())
+    calculated_value = stk.top();
 }
 
 void Model::IsBinaryOperation(std::stack<long double> &resstack,
@@ -108,70 +113,71 @@ void Model::IsFunckAndUnaryOperation(std::stack<long double> &resstack,
   resstack.push(Operation(a, operation));
 }
 
-double Model::Operation(long double &a, long double &b, char oper) {
+double Model::Operation(long double const &a, long double const &b,
+                        char const oper) {
   long double res = 0;
   switch (oper) {
-    case '+':
-      res = b + a;
-      break;
-    case '-':
-      res = b - a;
-      break;
-    case '*':
-      res = b * a;
-      break;
-    case '/':
-      res = b / a;
-      break;
-    case '^':
-      res = powf(b, a);
-      break;
-    case 'm':
-      res = fmod(b, a);
-      break;
-    default:
-      res = 0;
-      break;
+  case '+':
+    res = b + a;
+    break;
+  case '-':
+    res = b - a;
+    break;
+  case '*':
+    res = b * a;
+    break;
+  case '/':
+    res = b / a;
+    break;
+  case '^':
+    res = powf(b, a);
+    break;
+  case 'm':
+    res = fmod(b, a);
+    break;
+  default:
+    res = 0;
+    break;
   }
   return res;
 }
 
-double Model::Operation(long double &a, char oper) {
+double Model::Operation(long double const &a, char const oper) {
   long double res = 0;
   switch (oper) {
-    case 's':
-      res = sin(a);
-      break;
-    case 'c':
-      res = cos(a);
-      break;
-    case 't':
-      res = tan(a);
-      break;
-    case 'z':
-      res = acos(a);
-      break;
-    case 'w':
-      res = asin(a);
-      break;
-    case 'v':
-      res = sqrt(a);
-      break;
-    case 'd':
-      res = log(a);
-      break;
-    case 'l':
-      res = log10(a);
-      break;
-    case 'e':
-      res = atan(a);
-      break;
-    case 'u':
-      res = -a;
-      break;
-    case 'p':
-      res = a;
-      break;
+  case 's':
+    res = sin(a);
+    break;
+  case 'c':
+    res = cos(a);
+    break;
+  case 't':
+    res = tan(a);
+    break;
+  case 'z':
+    res = acos(a);
+    break;
+  case 'w':
+    res = asin(a);
+    break;
+  case 'v':
+    res = sqrt(a);
+    break;
+  case 'd':
+    res = log(a);
+    break;
+  case 'l':
+    res = log10(a);
+    break;
+  case 'e':
+    res = atan(a);
+    break;
+  case 'u':
+    res = -a;
+    break;
+  case 'p':
+    res = a;
+    break;
   }
   return res;
 }
@@ -191,7 +197,8 @@ bool Model::Valid() {
   bool flag_valid = true;
   bool flag_point = false;
   int bal = 0;
-  if (!ValidFirstAndLastSim()) return false;
+  if (!ValidFirstAndLastSim())
+    return false;
   for (auto i = expression.begin(); i != expression.end() - 1; ++i) {
     if (may_unary && *i == '+') {
       *i = 'p';
@@ -277,10 +284,12 @@ void Model::AC() {
   output.clear();
 }
 
-typename std::pair<bool, double> Model::Test(std::string input, double x) {
+typename std::pair<bool, double> Model::Test(std::string const &input,
+                                             double x) {
   expression = input;
   std::pair<bool, double> res;
   res.first = Valid();
-  if (res.first) res.second = Calculate(x);
+  if (res.first)
+    res.second = Calculate(x);
   return res;
 }
