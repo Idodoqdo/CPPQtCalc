@@ -17,7 +17,7 @@ class Model {
       {'d', 4}, {'l', 4}, {'e', 4}, {'u', 5}, {'p', 5}};
   std::map<std::string, char> converter = {
       {"sin", 's'},  {"cos", 'c'}, {"tan", 't'}, {"acos", 'z'}, {"asin", 'w'},
-      {"sqrt", 'v'}, {"ln", 'v'},  {"log", 'd'}, {"atan", 'e'}, {"mod", 'm'}};
+      {"sqrt", 'v'}, {"ln", 'd'},  {"log", 'l'}, {"atan", 'e'}, {"mod", 'm'}};
   std::string expression;
   void GoToRPN();
   void CalculateRPN(double x);
@@ -34,7 +34,7 @@ class Model {
   double calculated_value;
   bool may_unary;
 
-public:
+ public:
   Model() : expression(""), calculated_value(4), may_unary(true){};
   double Calculate(double x);
   void CalculateGraph(std::vector<double> &x, std::vector<double> &y,
@@ -47,4 +47,4 @@ public:
   bool Valid();
 };
 
-#endif // MODEL_H
+#endif  // MODEL_H

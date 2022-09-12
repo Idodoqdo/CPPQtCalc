@@ -254,7 +254,8 @@ bool Model::Valid() {
 bool Model::ValidFirstAndLastSim() {
   bool flag = true;
   char last_symb = expression[expression.length() - 1];
-  std::set<char> first_symbol = {'x', 'a', 'c', 's', '(', 'l', 't', '+', '-'};
+  std::set<char> first_symbol = {'x', 'a', 'c', 's', '(', 'l', 't', '+',
+                                 '-', 'z', 'w', 'v', 'd', 'e', 'm'};
   if ((!isdigit(expression[0]) &&
        first_symbol.find(expression[0]) == first_symbol.end()) ||
       (!isdigit(last_symb) && last_symb != 'x' && last_symb != ')'))
